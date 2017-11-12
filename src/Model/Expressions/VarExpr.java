@@ -1,21 +1,21 @@
 package Model.Expressions;
 
-import Model.Exceptions.NotDefinedException;
+import Model.Exceptions.VariableNotDefinedException;
 import Model.State.ISymTable;
 
 public class VarExpr implements IExpr {
     private String id;
 
-    public VarExpr(String id) {
-        this.id = id;
+    public VarExpr(String _id) {
+        this.id = _id;
     }
 
     @Override
-    public int eval(ISymTable<String, Integer> symTable) throws NotDefinedException {
+    public int eval(ISymTable<String, Integer> symTable) throws VariableNotDefinedException {
         if (symTable.isKey(this.id))
             return symTable.getValue(this.id);
         else {
-            throw new NotDefinedException("Not found!");
+            throw new VariableNotDefinedException(this.id);
         }
     }
 

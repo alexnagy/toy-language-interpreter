@@ -8,10 +8,10 @@ public class ArithExpr implements IExpr {
     private char op;
     private IExpr left, right;
 
-    public ArithExpr(char op, IExpr left, IExpr right) {
-        this.op = op;
-        this.left = left;
-        this.right = right;
+    public ArithExpr(char _op, IExpr _left, IExpr _right) {
+        this.op = _op;
+        this.left = _left;
+        this.right = _right;
     }
 
     @Override

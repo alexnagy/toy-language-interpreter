@@ -1,9 +1,7 @@
 package Controller;
 
 
-import Model.Exceptions.DivisionByZeroException;
-import Model.Exceptions.EmptyExecStackException;
-import Model.Exceptions.UnknownOperationException;
+import Model.Exceptions.*;
 import Model.State.IOut;
 import Repository.IRepository;
 import Model.State.PrgState;
@@ -14,23 +12,20 @@ import java.io.IOException;
 public class Controller
 {
     private IRepository repository;
-    private boolean display = false;
+    private boolean display;
 
-    public Controller(IRepository repository){
+    public Controller(IRepository _repository, boolean _display){
 
-        this.repository = repository;
+        this.repository = _repository;
+        this.display = _display;
     }
 
-    public PrgState executeOne() {
+    public PrgState executeOne() throws EmptyExecStackException, DivisionByZeroException, UnknownOperationException, IOException, FileNotDefinedException {
         PrgState prgState = repository.getCurrentProgramState();
 
-        try {
-            IStmt stmt = prgState.getExecStack().pop();
-            stmt.execute(prgState);
-        }
-        catch(EmptyExecStackException | UnknownOperationException | DivisionByZeroException e) {
-            System.out.println(e.toString());
-        }
+        IStmt stmt;
+        stmt = prgState.getExecStack().pop();
+        stmt.execute(prgState);
 
         if(this.display) {
             System.out.println(prgState);
@@ -40,11 +35,11 @@ public class Controller
         return prgState;
     }
 
-    public void executeAll() throws IOException {
+    public void executeAll() throws UnknownOperationException, EmptyExecStackException, DivisionByZeroException, IOException, FileNotDefinedException {
         PrgState prgState = repository.getCurrentProgramState();
 
         while(!prgState.getExecStack().isEmpty()) {
-            PrgState tmpPrgState = this.executeOne();
+            this.executeOne();
             this.repository.logPrgStateExec();
         }
 

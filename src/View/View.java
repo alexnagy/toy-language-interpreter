@@ -1,43 +1,25 @@
 package View;
 
 import Controller.Controller;
+import Model.ExitCommand;
 import Model.Expressions.ArithExpr;
 import Model.Expressions.ConstExpr;
 import Model.Expressions.VarExpr;
+import Model.RunExample;
 import Model.State.*;
 import Model.Statements.*;
 import Repository.IRepository;
 import Repository.Repository;
-
+import javafx.util.Pair;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class View {
-    private int selectProgram() {
+    public String getLogFilePath() {
         Scanner keyboard = new Scanner(System.in);
-
-        System.out.println("Please select one of the following programs:");
-        System.out.println("1. v=2;Print(v)");
-        System.out.println("2. a=2+3*5;b=a+1;Print(b)");
-        System.out.println("3. a=2-2;\n" +
-                           "(If a Then v=2 Else v=3);\n" +
-                           " Print(v)");
-
-        int input;
-        input = keyboard.nextInt();
-        return input;
-    }
-
-    private int selectNrOfExec() {
-        Scanner keyboard = new Scanner(System.in);
-
-        System.out.println("Please select the number of executions:");
-        System.out.println("1. Execute one");
-        System.out.println("2. Execute all");
-
-        int input;
-        input = keyboard.nextInt();
-        return input;
+        System.out.println("Please input the log file path:");
+        return keyboard.next();
     }
 
     public static void main(String args[]) {
@@ -55,54 +37,81 @@ public class View {
                 new CompStmt(new IfStmt(new VarExpr("a"),new AssignStmt("v",new ConstExpr(2)), new
                         AssignStmt("v", new ConstExpr(3))), new PrintStmt(new VarExpr("v"))));
 
-        IExecStack execStack = new ExecStack<>();
-        ISymTable<String, Integer> symTable = new SymTable<>();
-        IOut<Integer> messageList = new Out<>();
-        PrgState prgState = new PrgState(execStack, symTable, messageList);
-        IRepository repository = new Repository();
-        repository.addProgramState(prgState);
-        Controller controller = new Controller(repository);
+        IStmt ex4 = new CompStmt(
+                new OpenRFileStmt("var_f", "test.in"),
+        new CompStmt(
+                new ReadFileStmt(new VarExpr("var_f"), "var_c"),
+                new CompStmt(
+                        new PrintStmt(new VarExpr("var_c")),
+                        new CompStmt(
+                                new IfStmt(
+                                        new VarExpr("var_c"),
+                                        new CompStmt(
+                                                new ReadFileStmt(new VarExpr("var_f"), "var_c"),
+                                                new PrintStmt(new VarExpr("var_c"))
+                                        ),
+                                        new PrintStmt(new ConstExpr(0))
+                                ),
+                                new CloseRFileStmt(new VarExpr("var_f"))
+                        )
+                )
+        ));
 
-        View view = new View();
-        int prg = view.selectProgram();
+        IStmt ex5 = new CompStmt(
+                new OpenRFileStmt("var_f", "test.in"),
+                new CompStmt(
+                        new ReadFileStmt(new ArithExpr('+', new VarExpr("var_f"), new ConstExpr(2)), "var_c"),
+                        new CompStmt(
+                                new PrintStmt(new VarExpr("var_c")),
+                                new CompStmt(
+                                        new IfStmt(
+                                                new VarExpr("var_c"),
+                                                new CompStmt(
+                                                        new ReadFileStmt(new VarExpr("var_f"), "var_c"),
+                                                        new PrintStmt(new VarExpr("var_c"))
+                                                ),
+                                                new PrintStmt(new ConstExpr(0))
+                                        ),
+                                        new CloseRFileStmt(new VarExpr("var_f"))
+                                )
+                        )
+                )
+        );
 
-        switch (prg) {
-            case 1: {
-                execStack.push(ex1);
-                break;
-            }
-            case 2: {
-                execStack.push(ex2);
-                break;
-            }
-            case 3: {
-                execStack.push(ex3);
-                break;
-            }
-            default: {
-                System.out.println("No program corresponding to this number");
-            }
-        }
+        String logFilePath = new View().getLogFilePath();
 
-        int nrOfExec = view.selectNrOfExec();
+        PrgState prg1 = new PrgState();
+        prg1.getExecStack().push(ex1);
+        IRepository repo1 = new Repository(prg1, logFilePath);
+        Controller ctrl1 = new Controller(repo1, false);
 
-        switch (nrOfExec) {
-            case 1: {
-                controller.executeOne();
-                return;
-            }
-            case 2: {
-                try {
-                    controller.executeAll();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return;
-            }
-            default: {
-                System.out.println("No option corresponding to this number");
-            }
-        }
+        PrgState prg2 = new PrgState();
+        prg2.getExecStack().push(ex2);
+        IRepository repo2 = new Repository(prg2, logFilePath);
+        Controller ctrl2 = new Controller(repo2, false);
 
+        PrgState prg3 = new PrgState();
+        prg3.getExecStack().push(ex3);
+        IRepository repo3 = new Repository(prg3, logFilePath);
+        Controller ctrl3 = new Controller(repo3, false);
+
+        PrgState prg4 = new PrgState();
+        prg4.getExecStack().push(ex4);
+        IRepository repo4 = new Repository(prg4, logFilePath);
+        Controller ctrl4 = new Controller(repo4, false);
+
+        PrgState prg5 = new PrgState();
+        prg5.getExecStack().push(ex5);
+        IRepository repo5 = new Repository(prg5, logFilePath);
+        Controller ctrl5 = new Controller(repo5, false);
+
+        TextMenu menu = new TextMenu();
+        menu.addCommand(new ExitCommand("0", "exit"));
+        menu.addCommand(new RunExample("1",ex1.toString(), ctrl1));
+        menu.addCommand(new RunExample("2",ex2.toString(), ctrl2));
+        menu.addCommand(new RunExample("3",ex3.toString(), ctrl3));
+        menu.addCommand(new RunExample("4",ex4.toString(), ctrl4));
+        menu.addCommand(new RunExample("5",ex5.toString(), ctrl5));
+        menu.show();
     }
 }

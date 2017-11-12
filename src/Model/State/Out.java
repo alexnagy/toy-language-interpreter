@@ -10,10 +10,6 @@ public class Out<T> implements IOut<T> {
         this.list = new ArrayList<T>();
     }
 
-    public Out(List<T> list) {
-        this.list = list;
-    }
-
     @Override
     public T getLast() {
         return this.list.get(this.list.size() - 1);
@@ -44,6 +40,7 @@ public class Out<T> implements IOut<T> {
         StringBuilder comp = new StringBuilder();
         for(T el: this.list) {
             comp.append(String.valueOf(el));
+            comp.append("\r\n");
         }
         return comp.toString();
     }

@@ -11,10 +11,6 @@ public class ExecStack<T> implements IExecStack<T> {
         this.stack = new Stack<T>();
     }
 
-    public ExecStack(Stack<T> stack) {
-        this.stack = stack;
-    }
-
     @Override
     public void push(T e) {
         this.stack.push(e);
@@ -37,6 +33,7 @@ public class ExecStack<T> implements IExecStack<T> {
 
         for(T elem : this.stack) {
             buffer.append(elem);
+            buffer.append("\r\n");
         }
 
         return buffer.toString();

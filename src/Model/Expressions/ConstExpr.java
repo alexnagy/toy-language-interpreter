@@ -5,8 +5,8 @@ import Model.State.ISymTable;
 public class ConstExpr implements IExpr {
     private int number;
 
-    public ConstExpr(int number) {
-        this.number = number;
+    public ConstExpr(int _number) {
+        this.number = _number;
     }
 
     @Override

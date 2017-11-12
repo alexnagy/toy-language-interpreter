@@ -1,26 +1,28 @@
 package Model.Statements;
 
 import Model.Exceptions.DivisionByZeroException;
-import Model.Exceptions.NotDefinedException;
+import Model.Exceptions.VariableNotDefinedException;
 import Model.Exceptions.UnknownOperationException;
 import Model.Expressions.IExpr;
 import Model.Expressions.VarExpr;
 import Model.State.ISymTable;
 import Model.State.PrgState;
 
+import java.io.IOException;
+
 public class IfStmt implements IStmt {
     private IExpr ifS;
     private IStmt thenS;
     private IStmt elseS;
 
-    public IfStmt(VarExpr IExpr, IStmt thenS, IStmt elseS) {
-        this.ifS = IExpr;
-        this.thenS = thenS;
-        this.elseS = elseS;
+    public IfStmt(VarExpr _ifS, IStmt _thenS, IStmt _elseS) {
+        this.ifS = _ifS;
+        this.thenS = _thenS;
+        this.elseS = _elseS;
     }
 
     @Override
-    public PrgState execute(PrgState currentState) throws DivisionByZeroException, UnknownOperationException {
+    public PrgState execute(PrgState currentState) throws DivisionByZeroException, UnknownOperationException, IOException {
         ISymTable<String, Integer> symTable = currentState.getSymTable();
         try {
             int result = this.ifS.eval(symTable);
@@ -32,13 +34,13 @@ public class IfStmt implements IStmt {
             }
 
         }
-        catch (DivisionByZeroException | UnknownOperationException | NotDefinedException e) {
+        catch (DivisionByZeroException | UnknownOperationException | VariableNotDefinedException e) {
             System.out.println(e.toString());
         }
         return currentState;
     }
 
     public String toString() {
-        return "IF(" + this.ifS + ") THEN(" + this.thenS + ")ELSE(" + this.elseS + ")";
+        return "IF(" + this.ifS + ")THEN(" + this.thenS + ")ELSE(" + this.elseS;
     }
 }

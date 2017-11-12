@@ -11,10 +11,6 @@ public class SymTable<String, Integer> implements ISymTable<String, Integer> {
         this.dict = new HashMap<>();
     }
 
-    public SymTable(Map<String, Integer> dict) {
-        this.dict = dict;
-    }
-
     @Override
     public void add(String key, Integer value) {
         this.dict.put(key, value);
@@ -54,8 +50,8 @@ public class SymTable<String, Integer> implements ISymTable<String, Integer> {
     public java.lang.String toString() {
         StringBuilder buff = new StringBuilder();
         for(String key: this.dict.keySet()) {
-            buff.append(key + "->" + this.getValue(key).toString());
-            buff.append("\n");
+            buff.append(key).append("->").append(this.getValue(key).toString());
+            buff.append("\r\n");
         }
         return buff.toString();
     }

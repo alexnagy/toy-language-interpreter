@@ -11,9 +11,9 @@ public class AssignStmt implements IStmt {
     private String id;
     private IExpr expr;
 
-    public AssignStmt(String id, IExpr expr) {
-        this.id = id;
-        this.expr = expr;
+    public AssignStmt(String _id, IExpr _expr) {
+        this.id = _id;
+        this.expr = _expr;
     }
 
     @Override
@@ -32,6 +32,6 @@ public class AssignStmt implements IStmt {
 
     @Override
     public String toString() {
-        return this.id + '=' + this.expr + "\n";
+        return this.id + '=' + this.expr;
     }
 }

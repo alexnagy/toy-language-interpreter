@@ -8,10 +8,10 @@ import Model.State.ISymTable;
 import Model.State.PrgState;
 
 public class PrintStmt implements IStmt {
-    private Model.Expressions.IExpr IExpr;
+    private IExpr IExpr;
 
-    public PrintStmt(IExpr e) {
-        this.IExpr = e;
+    public PrintStmt(IExpr _expr) {
+        this.IExpr = _expr;
     }
 
     @Override
@@ -25,6 +25,6 @@ public class PrintStmt implements IStmt {
 
     @Override
     public String toString() {
-        return "Print(" + this.IExpr + ")" + "\n";
+        return "Print(" + this.IExpr + ")";
     }
 }
