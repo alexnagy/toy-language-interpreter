@@ -1,5 +1,5 @@
 ExecStack:
-(ReadFile(var_f,var_c);(Print(var_c);(IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0);CloseRFile(var_f))))
+(ReadFile(var_f,var_c);(Print(var_c);IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0)))
 OpenRFile(var_f,test.in)
 
 SymTable:
@@ -8,47 +8,55 @@ FileTable:
 
 Out:
 
+Heap:
+
 
 ExecStack:
-(ReadFile(var_f,var_c);(Print(var_c);(IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0);CloseRFile(var_f))))
+(ReadFile(var_f,var_c);(Print(var_c);IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0)))
 
 SymTable:
 var_f->1
 
 FileTable:
-1->(test.in, java.io.BufferedReader@617faa95)
+1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 
+Heap:
+
 
 ExecStack:
-(Print(var_c);(IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0);CloseRFile(var_f)))
+(Print(var_c);IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0))
 ReadFile(var_f,var_c)
 
 SymTable:
 var_f->1
 
 FileTable:
-1->(test.in, java.io.BufferedReader@617faa95)
+1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 
+Heap:
+
 
 ExecStack:
-(Print(var_c);(IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0);CloseRFile(var_f)))
+(Print(var_c);IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0))
 
 SymTable:
 var_f->1
 var_c->15
 
 FileTable:
-1->(test.in, java.io.BufferedReader@617faa95)
+1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 
+Heap:
+
 
 ExecStack:
-(IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0);CloseRFile(var_f))
+IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0)
 Print(var_c)
 
 SymTable:
@@ -56,27 +64,14 @@ var_f->1
 var_c->15
 
 FileTable:
-1->(test.in, java.io.BufferedReader@617faa95)
+1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 
-
-ExecStack:
-(IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0);CloseRFile(var_f))
-
-SymTable:
-var_f->1
-var_c->15
-
-FileTable:
-1->(test.in, java.io.BufferedReader@617faa95)
-
-Out:
-15
+Heap:
 
 
 ExecStack:
-CloseRFile(var_f)
 IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0)
 
 SymTable:
@@ -84,14 +79,15 @@ var_f->1
 var_c->15
 
 FileTable:
-1->(test.in, java.io.BufferedReader@617faa95)
+1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 15
 
+Heap:
+
 
 ExecStack:
-CloseRFile(var_f)
 Print(var_c)
 ReadFile(var_f,var_c)
 
@@ -100,14 +96,15 @@ var_f->1
 var_c->15
 
 FileTable:
-1->(test.in, java.io.BufferedReader@617faa95)
+1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 15
 
+Heap:
+
 
 ExecStack:
-CloseRFile(var_f)
 Print(var_c)
 
 SymTable:
@@ -115,25 +112,12 @@ var_f->1
 var_c->50
 
 FileTable:
-1->(test.in, java.io.BufferedReader@617faa95)
+1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 15
 
-
-ExecStack:
-CloseRFile(var_f)
-
-SymTable:
-var_f->1
-var_c->50
-
-FileTable:
-1->(test.in, java.io.BufferedReader@617faa95)
-
-Out:
-15
-50
+Heap:
 
 
 ExecStack:
@@ -143,9 +127,12 @@ var_f->1
 var_c->50
 
 FileTable:
+1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 15
 50
+
+Heap:
 
 

@@ -1,5 +1,7 @@
 package Model.State;
 
+import java.util.Map;
+
 public interface IFileTable<K, V> {
     void add(K key, V value);
     void remove(K key);
@@ -7,4 +9,6 @@ public interface IFileTable<K, V> {
     boolean fileNameExists(String fileName);
     public V getValue(K key);
     public int getSize();
+    void setContent(Map<K, V> newFileTable);
+    Map<K, V> getContent();
 }

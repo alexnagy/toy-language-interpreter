@@ -2,9 +2,7 @@ package View;
 
 import Controller.Controller;
 import Model.ExitCommand;
-import Model.Expressions.ArithExpr;
-import Model.Expressions.ConstExpr;
-import Model.Expressions.VarExpr;
+import Model.Expressions.*;
 import Model.RunExample;
 import Model.State.*;
 import Model.Statements.*;
@@ -78,6 +76,51 @@ public class View {
                 )
         );
 
+        IStmt ex6 = new CompStmt(
+                new AssignStmt("v", new ConstExpr(10)),
+                new CompStmt(
+                        new HeapAllocStmt("v", new ConstExpr(20)),
+                        new CompStmt(
+                                new HeapAllocStmt("a", new ConstExpr(22)),
+                                new CompStmt(
+                                        new HeapWriteStmt("a", new ConstExpr(30)),
+                                        new CompStmt(
+                                                new PrintStmt(new VarExpr("a")),
+                                                new CompStmt(
+                                                        new PrintStmt(new HeapReadExpr("a")),
+                                                        new AssignStmt("a", new ConstExpr(0)))))
+                        )
+                )
+        );
+
+        IStmt ex7 = new CompStmt(
+                new AssignStmt("v", new ConstExpr(6)),
+                new CompStmt(
+                        new WhileStmt(new ArithExpr('-', new VarExpr("v"), new ConstExpr(4)),
+                                new CompStmt(
+                                        new PrintStmt(new VarExpr("v")),
+                                        new AssignStmt("v", new ArithExpr('-', new VarExpr("v"), new ConstExpr(1)))
+                                )),
+                        new PrintStmt(new VarExpr("v")))
+        );
+
+        IStmt ex8 = new CompStmt(
+                new OpenRFileStmt("var_f", "test.in"),
+                new CompStmt(
+                        new ReadFileStmt(new VarExpr("var_f"), "var_c"),
+                        new CompStmt(
+                                new PrintStmt(new VarExpr("var_c")),
+                                new IfStmt(
+                                        new VarExpr("var_c"),
+                                        new CompStmt(
+                                                new ReadFileStmt(new VarExpr("var_f"), "var_c"),
+                                                new PrintStmt(new VarExpr("var_c"))
+                                        ),
+                                        new PrintStmt(new ConstExpr(0))
+                                )
+                        )
+                ));
+
         String logFilePath = new View().getLogFilePath();
 
         PrgState prg1 = new PrgState();
@@ -105,6 +148,21 @@ public class View {
         IRepository repo5 = new Repository(prg5, logFilePath);
         Controller ctrl5 = new Controller(repo5, false);
 
+        PrgState prg6 = new PrgState();
+        prg6.getExecStack().push(ex6);
+        IRepository repo6 = new Repository(prg6, logFilePath);
+        Controller ctrl6 = new Controller(repo6, false);
+
+        PrgState prg7 = new PrgState();
+        prg7.getExecStack().push(ex7);
+        IRepository repo7 = new Repository(prg7, logFilePath);
+        Controller ctrl7 = new Controller(repo7, false);
+
+        PrgState prg8 = new PrgState();
+        prg8.getExecStack().push(ex8);
+        IRepository repo8 = new Repository(prg8, logFilePath);
+        Controller ctrl8 = new Controller(repo8, false);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
         menu.addCommand(new RunExample("1",ex1.toString(), ctrl1));
@@ -112,6 +170,10 @@ public class View {
         menu.addCommand(new RunExample("3",ex3.toString(), ctrl3));
         menu.addCommand(new RunExample("4",ex4.toString(), ctrl4));
         menu.addCommand(new RunExample("5",ex5.toString(), ctrl5));
+        menu.addCommand(new RunExample("6",ex6.toString(), ctrl6));
+        menu.addCommand(new RunExample("7",ex7.toString(), ctrl7));
+        menu.addCommand(new RunExample("8",ex8.toString(), ctrl8));
+
         menu.show();
     }
 }

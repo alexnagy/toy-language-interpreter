@@ -2,7 +2,6 @@ package Model.Statements;
 
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.FileNotDefinedException;
-import Model.Exceptions.VariableNotDefinedException;
 import Model.Exceptions.UnknownOperationException;
 import Model.Expressions.IExpr;
 import Model.State.ISymTable;
@@ -22,7 +21,7 @@ public class ReadFileStmt implements IStmt {
 
     @Override
     public PrgState execute(PrgState currentState) throws DivisionByZeroException, UnknownOperationException, IOException, FileNotDefinedException {
-        int fileId = this.fileIdExpr.eval(currentState.getSymTable());
+        int fileId = this.fileIdExpr.eval(currentState.getSymTable(), currentState.getHeap());
         if(!currentState.getFileTable().fileIdExists(fileId))
             throw new FileNotDefinedException(fileId);
         BufferedReader fileDescriptor = currentState.getFileTable().getValue(fileId).getFileDescriptor();

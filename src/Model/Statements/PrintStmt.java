@@ -17,8 +17,8 @@ public class PrintStmt implements IStmt {
     @Override
     public PrgState execute (PrgState currentState) throws DivisionByZeroException, UnknownOperationException {
         IOut<Integer> out = currentState.getOut();
-        ISymTable<String, Integer> SymTable = currentState.getSymTable();
-        int res = this.IExpr.eval(SymTable);
+        ISymTable<String, Integer> symTable = currentState.getSymTable();
+        int res = this.IExpr.eval(symTable, currentState.getHeap());
         out.append(res);
         return currentState;
     }

@@ -18,7 +18,7 @@ public class CloseRFileStmt implements IStmt {
 
     @Override
     public PrgState execute(PrgState currentState) throws DivisionByZeroException, UnknownOperationException, IOException {
-        int fileId = fileIdExpr.eval(currentState.getSymTable());
+        int fileId = fileIdExpr.eval(currentState.getSymTable(), currentState.getHeap());
         BufferedReader fileDescriptor = currentState.getFileTable().getValue(fileId).getFileDescriptor();
         fileDescriptor.close();
 

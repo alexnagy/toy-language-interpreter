@@ -1,5 +1,6 @@
 package Model.Expressions;
 
+import Model.State.IHeap;
 import Model.State.ISymTable;
 
 public class ConstExpr implements IExpr {
@@ -10,7 +11,7 @@ public class ConstExpr implements IExpr {
     }
 
     @Override
-    public int eval(ISymTable<String, Integer> symTable) {
+    public int eval(ISymTable<String, Integer> symTable,  IHeap<Integer, Integer> heap) {
         return this.number;
     }
 

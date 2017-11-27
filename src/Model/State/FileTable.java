@@ -42,6 +42,16 @@ public class FileTable<K, V> implements IFileTable<K, V> {
     }
 
     @Override
+    public void setContent(Map<K, V> newFileTable) {
+        this.dict = newFileTable;
+    }
+
+    @Override
+    public Map<K, V> getContent() {
+        return this.dict;
+    }
+
+    @Override
     public String toString() {
         StringBuilder buff = new StringBuilder();
         for(K key: this.dict.keySet()) {

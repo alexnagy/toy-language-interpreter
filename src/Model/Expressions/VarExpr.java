@@ -1,6 +1,10 @@
 package Model.Expressions;
 
+import Model.Exceptions.AddressNotDefinedException;
+import Model.Exceptions.DivisionByZeroException;
+import Model.Exceptions.UnknownOperationException;
 import Model.Exceptions.VariableNotDefinedException;
+import Model.State.IHeap;
 import Model.State.ISymTable;
 
 public class VarExpr implements IExpr {
@@ -11,7 +15,7 @@ public class VarExpr implements IExpr {
     }
 
     @Override
-    public int eval(ISymTable<String, Integer> symTable) throws VariableNotDefinedException {
+    public int eval(ISymTable<String, Integer> symTable,  IHeap<Integer, Integer> heap) throws DivisionByZeroException, UnknownOperationException, VariableNotDefinedException, AddressNotDefinedException {
         if (symTable.isKey(this.id))
             return symTable.getValue(this.id);
         else {

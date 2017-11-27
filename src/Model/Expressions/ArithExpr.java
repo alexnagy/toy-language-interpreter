@@ -2,6 +2,7 @@ package Model.Expressions;
 
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.UnknownOperationException;
+import Model.State.IHeap;
 import Model.State.ISymTable;
 
 public class ArithExpr implements IExpr {
@@ -15,11 +16,11 @@ public class ArithExpr implements IExpr {
     }
 
     @Override
-    public int eval(ISymTable<String, Integer> symTable) throws DivisionByZeroException, UnknownOperationException {
+    public int eval(ISymTable<String, Integer> symTable,  IHeap<Integer, Integer> heap) throws DivisionByZeroException, UnknownOperationException {
         int left = 0, right = 0;
 
-        left = this.left.eval(symTable);
-        right = this.right.eval(symTable);
+        left = this.left.eval(symTable, heap);
+        right = this.right.eval(symTable, heap);
 
         switch (this.op) {
             case '+': {

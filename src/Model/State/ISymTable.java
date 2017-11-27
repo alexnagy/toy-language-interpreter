@@ -1,5 +1,7 @@
 package Model.State;
 
+import java.util.Map;
+
 public interface ISymTable<String, Integer> {
     void add(String key, Integer value);
     void remove(String key, Integer value);
@@ -8,5 +10,7 @@ public interface ISymTable<String, Integer> {
     boolean isKey(String key);
     boolean isValue(Integer value);
     boolean isEmpty();
+    Map<String, Integer> getContent();
+    void setContent(Map<String, Integer> newSymTable);
     java.lang.String toString();
 }

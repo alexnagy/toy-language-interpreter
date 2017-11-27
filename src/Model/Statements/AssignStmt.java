@@ -20,7 +20,7 @@ public class AssignStmt implements IStmt {
     public PrgState execute(PrgState currentState) throws DivisionByZeroException, UnknownOperationException {
         IExecStack<IStmt> stack = currentState.getExecStack();
         ISymTable<String, Integer> symTable = currentState.getSymTable();
-        int result = this.expr.eval(symTable);
+        int result = this.expr.eval(symTable, currentState.getHeap());
         if (symTable.isKey(id)) {
             symTable.update(id, result);
         }

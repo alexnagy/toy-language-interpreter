@@ -25,7 +25,7 @@ public class IfStmt implements IStmt {
     public PrgState execute(PrgState currentState) throws DivisionByZeroException, UnknownOperationException, IOException {
         ISymTable<String, Integer> symTable = currentState.getSymTable();
         try {
-            int result = this.ifS.eval(symTable);
+            int result = this.ifS.eval(symTable, currentState.getHeap());
             if(result != 0) {
                 this.thenS.execute(currentState);
             }
