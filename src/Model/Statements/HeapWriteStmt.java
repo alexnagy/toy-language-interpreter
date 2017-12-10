@@ -36,7 +36,7 @@ public class HeapWriteStmt implements IStmt {
             }
         }
 
-        return currentState;
+        return null;
     }
 
     @Override

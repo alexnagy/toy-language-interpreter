@@ -19,9 +19,8 @@ public class RunExample extends Command {
     public void execute() {
         try {
             this.ctrl.executeAll();
-        } catch (UnknownOperationException | IOException | DivisionByZeroException | EmptyExecStackException | FileNotDefinedException e) {
+        } catch ( FileNotDefinedException | InterruptedException | IOException e) {
             e.printStackTrace();
-            return;
         }
     }
 }

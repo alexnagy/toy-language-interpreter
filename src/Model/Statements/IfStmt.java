@@ -37,7 +37,7 @@ public class IfStmt implements IStmt {
         catch (DivisionByZeroException | UnknownOperationException | VariableNotDefinedException e) {
             System.out.println(e.toString());
         }
-        return currentState;
+        return null;
     }
 
     public String toString() {

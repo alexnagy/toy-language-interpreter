@@ -29,7 +29,7 @@ public class WhileStmt implements IStmt {
             execStack.push(this);
             execStack.push(this.stmt);
         }
-        return currentState;
+        return null;
     }
 
     @Override

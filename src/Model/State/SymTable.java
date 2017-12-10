@@ -10,6 +10,9 @@ public class SymTable<String, Integer> implements ISymTable<String, Integer> {
     public SymTable() {
         this.dict = new HashMap<>();
     }
+    public SymTable(Map _dict) {
+        this.dict = new HashMap<>(_dict);
+    }
 
     @Override
     public void add(String key, Integer value) {

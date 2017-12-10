@@ -38,7 +38,7 @@ public class OpenRFileStmt implements IStmt {
         else {
             symTable.add(this.varFileId, fileId);
         }
-        return currentState;
+        return null;
     }
 
     @Override

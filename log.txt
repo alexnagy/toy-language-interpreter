@@ -1,6 +1,6 @@
+ID: 1
 ExecStack:
-(ReadFile(var_f,var_c);(Print(var_c);IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0)))
-OpenRFile(var_f,test.in)
+((v=10;new(a, 22));(fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))));(Print(v);Print(rH(a)))))
 
 SymTable:
 
@@ -11,128 +11,543 @@ Out:
 Heap:
 
 
+ID: 1
 ExecStack:
-(ReadFile(var_f,var_c);(Print(var_c);IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0)))
+(fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))));(Print(v);Print(rH(a))))
+(v=10;new(a, 22))
 
 SymTable:
-var_f->1
 
 FileTable:
-1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 
 Heap:
 
 
+ID: 1
 ExecStack:
-(Print(var_c);IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0))
-ReadFile(var_f,var_c)
+(fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))));(Print(v);Print(rH(a))))
+(v=10;new(a, 22))
 
 SymTable:
-var_f->1
 
 FileTable:
-1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 
 Heap:
 
 
+ID: 1
 ExecStack:
-(Print(var_c);IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0))
+(fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))));(Print(v);Print(rH(a))))
+new(a, 22)
+v=10
 
 SymTable:
-var_f->1
-var_c->15
 
 FileTable:
-1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 
 Heap:
 
 
+ID: 1
 ExecStack:
-IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0)
-Print(var_c)
+(fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))));(Print(v);Print(rH(a))))
+new(a, 22)
+v=10
 
 SymTable:
-var_f->1
-var_c->15
 
 FileTable:
-1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
 
 Heap:
 
 
+ID: 1
 ExecStack:
-IF(var_c)THEN((ReadFile(var_f,var_c);Print(var_c)))ELSE(Print(0)
+(fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))));(Print(v);Print(rH(a))))
+new(a, 22)
 
 SymTable:
-var_f->1
-var_c->15
+v->10
 
 FileTable:
-1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
-15
 
 Heap:
 
 
+ID: 1
 ExecStack:
-Print(var_c)
-ReadFile(var_f,var_c)
+(fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))));(Print(v);Print(rH(a))))
+new(a, 22)
 
 SymTable:
-var_f->1
-var_c->15
+v->10
 
 FileTable:
-1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
-15
 
 Heap:
 
 
+ID: 1
 ExecStack:
-Print(var_c)
+(fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))));(Print(v);Print(rH(a))))
 
 SymTable:
-var_f->1
-var_c->50
+a->1
+v->10
 
 FileTable:
-1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
-15
 
 Heap:
+1->22
 
 
+ID: 1
+ExecStack:
+(fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))));(Print(v);Print(rH(a))))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 1
+ExecStack:
+(Print(v);Print(rH(a)))
+fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 1
+ExecStack:
+(Print(v);Print(rH(a)))
+fork((wH(a, 30);(v=32;(Print(v);Print(rH(a))))))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 1
+ExecStack:
+(Print(v);Print(rH(a)))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 10
+ExecStack:
+(wH(a, 30);(v=32;(Print(v);Print(rH(a)))))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 1
+ExecStack:
+(Print(v);Print(rH(a)))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 10
+ExecStack:
+(wH(a, 30);(v=32;(Print(v);Print(rH(a)))))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 1
+ExecStack:
+Print(rH(a))
+Print(v)
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 10
+ExecStack:
+(v=32;(Print(v);Print(rH(a))))
+wH(a, 30)
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 1
+ExecStack:
+Print(rH(a))
+Print(v)
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 10
+ExecStack:
+(v=32;(Print(v);Print(rH(a))))
+wH(a, 30)
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+1->22
+
+
+ID: 1
+ExecStack:
+Print(rH(a))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+10
+
+Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+(v=32;(Print(v);Print(rH(a))))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+10
+
+Heap:
+1->30
+
+
+ID: 1
+ExecStack:
+Print(rH(a))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+10
+
+Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+(v=32;(Print(v);Print(rH(a))))
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+10
+
+Heap:
+1->30
+
+
+ID: 1
 ExecStack:
 
 SymTable:
-var_f->1
-var_c->50
+a->1
+v->10
 
 FileTable:
-1->(test.in, java.io.BufferedReader@3701eaf6)
 
 Out:
-15
-50
+10
+30
 
 Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+(Print(v);Print(rH(a)))
+v=32
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+10
+30
+
+Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+(Print(v);Print(rH(a)))
+v=32
+
+SymTable:
+a->1
+v->10
+
+FileTable:
+
+Out:
+10
+30
+
+Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+(Print(v);Print(rH(a)))
+
+SymTable:
+a->1
+v->32
+
+FileTable:
+
+Out:
+10
+30
+
+Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+(Print(v);Print(rH(a)))
+
+SymTable:
+a->1
+v->32
+
+FileTable:
+
+Out:
+10
+30
+
+Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+Print(rH(a))
+Print(v)
+
+SymTable:
+a->1
+v->32
+
+FileTable:
+
+Out:
+10
+30
+
+Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+Print(rH(a))
+Print(v)
+
+SymTable:
+a->1
+v->32
+
+FileTable:
+
+Out:
+10
+30
+
+Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+Print(rH(a))
+
+SymTable:
+a->1
+v->32
+
+FileTable:
+
+Out:
+10
+30
+32
+
+Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+Print(rH(a))
+
+SymTable:
+a->1
+v->32
+
+FileTable:
+
+Out:
+10
+30
+32
+
+Heap:
+1->30
+
+
+ID: 10
+ExecStack:
+
+SymTable:
+a->1
+v->32
+
+FileTable:
+
+Out:
+10
+30
+32
+30
+
+Heap:
+1->30
 
 

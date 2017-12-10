@@ -28,7 +28,7 @@ public class HeapAllocStmt implements IStmt{
         heap.add(addr, val);
         IStmt assignStmt = new AssignStmt(this.varName, new ConstExpr(addr));
         assignStmt.execute(currentState);
-        return currentState;
+        return null;
     }
 
     @Override

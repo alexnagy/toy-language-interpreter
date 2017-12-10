@@ -20,7 +20,7 @@ public class PrintStmt implements IStmt {
         ISymTable<String, Integer> symTable = currentState.getSymTable();
         int res = this.IExpr.eval(symTable, currentState.getHeap());
         out.append(res);
-        return currentState;
+        return null;
     }
 
     @Override

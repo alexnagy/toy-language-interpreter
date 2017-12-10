@@ -21,6 +21,7 @@ public class View {
     }
 
     public static void main(String args[]) {
+
         IStmt ex1 = new CompStmt(
                 new AssignStmt("v", new ConstExpr(2)),
                 new PrintStmt(new VarExpr("v")));
@@ -121,6 +122,31 @@ public class View {
                         )
                 ));
 
+        IStmt ex9 = new CompStmt(
+                new CompStmt(
+                        new AssignStmt("v", new ConstExpr(10)),
+                        new HeapAllocStmt("a", new ConstExpr(22))
+                ),
+                new CompStmt(
+                        new ForkStmt(
+                                new CompStmt(
+                                        new HeapWriteStmt("a", new ConstExpr(30)),
+                                        new CompStmt(
+                                                new AssignStmt("v", new ConstExpr(32)),
+                                                new CompStmt(
+                                                        new PrintStmt(new VarExpr("v")),
+                                                        new PrintStmt(new HeapReadExpr("a"))
+                                                )
+                                        )
+                                )
+                        ),
+                        new CompStmt(
+                                new PrintStmt(new VarExpr("v")),
+                                new PrintStmt(new HeapReadExpr("a"))
+                        )
+                )
+        );
+
         String logFilePath = new View().getLogFilePath();
 
         PrgState prg1 = new PrgState();
@@ -163,6 +189,11 @@ public class View {
         IRepository repo8 = new Repository(prg8, logFilePath);
         Controller ctrl8 = new Controller(repo8, false);
 
+        PrgState prg9 = new PrgState();
+        prg9.getExecStack().push(ex9);
+        IRepository repo9 = new Repository(prg9, logFilePath);
+        Controller ctrl9 = new Controller(repo9, false);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
         menu.addCommand(new RunExample("1",ex1.toString(), ctrl1));
@@ -173,7 +204,11 @@ public class View {
         menu.addCommand(new RunExample("6",ex6.toString(), ctrl6));
         menu.addCommand(new RunExample("7",ex7.toString(), ctrl7));
         menu.addCommand(new RunExample("8",ex8.toString(), ctrl8));
+        menu.addCommand(new RunExample("9",ex9.toString(), ctrl9));
 
         menu.show();
+
+
+
     }
 }

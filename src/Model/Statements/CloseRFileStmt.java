@@ -25,7 +25,7 @@ public class CloseRFileStmt implements IStmt {
         IFileTable fileTable = currentState.getFileTable();
         fileTable.remove(fileId);
 
-        return currentState;
+        return null;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class AssignStmt implements IStmt {
         else {
             symTable.add(id, result);
         }
-        return currentState;
+        return null;
     }
 
     @Override

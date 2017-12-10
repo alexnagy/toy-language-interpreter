@@ -40,7 +40,7 @@ public class ReadFileStmt implements IStmt {
         else {
             currentState.getSymTable().add(this.varName, lineValue);
         }
-        return currentState;
+        return null;
     }
 
     @Override
