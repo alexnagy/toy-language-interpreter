@@ -12,6 +12,7 @@ public interface IHeap<A, V> {
     boolean isEmpty();
     int getSize();
     Map<A, V> getContent();
+    Iterable<Map.Entry<A, V>> getAll();
     void setContent(Map<A, V> newHeap);
     public String toString();
 }

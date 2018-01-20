@@ -3,6 +3,7 @@ package Controller;
 
 import Repository.IRepository;
 import Model.States.PrgState;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.util.List;
@@ -85,6 +86,24 @@ public class Controller
         this.repository.setPrgList(prgList);
 
         this.repository.openLogFile();
+    }
+
+    public void executeAllGUI() throws InterruptedException {
+        executor = Executors.newFixedThreadPool(2);
+
+        List<PrgState> prgList = removeCompletedPrg(this.repository.getPrgList());
+        if(prgList.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "The program has ended!");
+            alert.show();
+        }
+        else {
+            executeOneForAllPrg(prgList);
+        }
+        executor.shutdown();
+    }
+
+    public int getProgramStatesNumber() {
+        return removeCompletedPrg(this.repository.getPrgList()).size();
     }
 
     private List<PrgState> removeCompletedPrg(List<PrgState> inPrgList) {

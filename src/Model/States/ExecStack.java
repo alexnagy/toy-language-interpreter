@@ -23,6 +23,14 @@ public class ExecStack<T> implements IExecStack<T> {
         return this.stack.pop();
     }
 
+    public T peek() throws EmptyExecStackException
+    {
+        if(this.stack.empty()) {
+            throw new EmptyExecStackException();
+        }
+        return this.stack.peek();
+    }
+
     public boolean isEmpty() {
         return this.stack.size() == 0;
     }
@@ -42,5 +50,9 @@ public class ExecStack<T> implements IExecStack<T> {
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    public Stack getStack() {
+        return this.stack;
     }
 }

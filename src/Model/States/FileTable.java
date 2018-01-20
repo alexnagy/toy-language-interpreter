@@ -52,6 +52,11 @@ public class FileTable<K, V> implements IFileTable<K, V> {
     }
 
     @Override
+    public Iterable<Map.Entry<K, V>> getAll() {
+        return this.dict.entrySet();
+    }
+
+    @Override
     public String toString() {
         StringBuilder buff = new StringBuilder();
         for(K key: this.dict.keySet()) {

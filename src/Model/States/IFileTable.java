@@ -11,4 +11,5 @@ public interface IFileTable<K, V> {
     public int getSize();
     void setContent(Map<K, V> newFileTable);
     Map<K, V> getContent();
+    Iterable<Map.Entry<K, V>> getAll();
 }

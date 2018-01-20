@@ -1,23 +1,101 @@
 package View;
 
-import Controller.Controller;
-import Model.ExitCommand;
-import Model.Expressions.*;
-import Model.RunExample;
-import Model.States.*;
+import Model.Exceptions.EmptyExecStackException;
+import Model.Expressions.ArithExpr;
+import Model.Expressions.ConstExpr;
+import Model.Expressions.HeapReadExpr;
+import Model.Expressions.VarExpr;
 import Model.Statements.*;
+import Model.States.PrgState;
 import Repository.IRepository;
 import Repository.Repository;
-import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 
-public class View {
-    public String getLogFilePath() {
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("Please input the log file path:");
-        return keyboard.next();
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+public class SelectProgram implements Initializable {
+    @FXML
+    private ListView<String> prgStateList;
+
+    @FXML
+    private Button selectBtn;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        List<PrgState> prgList = this.getPrgList();
+
+        List<String> strList = prgList.stream().map(p -> {
+            try {
+                return p.getExecStack().peek().toString();
+            } catch (EmptyExecStackException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }).collect(Collectors.toList());
+        ObservableList<String> obsvList = FXCollections.observableList(strList);
+
+        prgStateList.setItems(obsvList);
+
+        final List<PrgState> prgStatesFinal = prgList;
+
+        selectBtn.setOnAction(new EventHandler<>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int index = prgStateList.getSelectionModel().getSelectedIndex();
+
+                if(-1 == index){
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "No program State Selected!");
+                    alert.show();
+                    return;
+                }
+
+                PrgState selectedProgram = prgStatesFinal.get(index);
+
+                try {
+                    selectBtn.getScene();
+                    Stage oldStage = (Stage) selectBtn.getScene().getWindow();
+                    oldStage.setIconified(true);
+
+                    Stage secondStage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("RunProrgram.fxml"));
+                    Parent root2 = loader.load();
+                    secondStage.setTitle("ToyLanguageInterpreter");
+                    secondStage.setScene(new Scene(root2));
+
+                    RunProgram runPrg = loader.getController();
+
+                    IRepository repo = new Repository(selectedProgram, "log.txt");
+
+                    runPrg.initialize(selectedProgram, repo);
+
+                    secondStage.show();
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
-    public static void main_old(String args[]) {
+    private List<PrgState> getPrgList() {
+        List<PrgState> prgList = new ArrayList<>();
 
         IStmt ex1 = new CompStmt(
                 new AssignStmt("v", new ConstExpr(2)),
@@ -35,23 +113,23 @@ public class View {
 
         IStmt ex4 = new CompStmt(
                 new OpenRFileStmt("var_f", "test.in"),
-        new CompStmt(
-                new ReadFileStmt(new VarExpr("var_f"), "var_c"),
                 new CompStmt(
-                        new PrintStmt(new VarExpr("var_c")),
+                        new ReadFileStmt(new VarExpr("var_f"), "var_c"),
                         new CompStmt(
-                                new IfStmt(
-                                        new VarExpr("var_c"),
-                                        new CompStmt(
-                                                new ReadFileStmt(new VarExpr("var_f"), "var_c"),
-                                                new PrintStmt(new VarExpr("var_c"))
+                                new PrintStmt(new VarExpr("var_c")),
+                                new CompStmt(
+                                        new IfStmt(
+                                                new VarExpr("var_c"),
+                                                new CompStmt(
+                                                        new ReadFileStmt(new VarExpr("var_f"), "var_c"),
+                                                        new PrintStmt(new VarExpr("var_c"))
+                                                ),
+                                                new PrintStmt(new ConstExpr(0))
                                         ),
-                                        new PrintStmt(new ConstExpr(0))
-                                ),
-                                new CloseRFileStmt(new VarExpr("var_f"))
+                                        new CloseRFileStmt(new VarExpr("var_f"))
+                                )
                         )
-                )
-        ));
+                ));
 
         IStmt ex5 = new CompStmt(
                 new OpenRFileStmt("var_f", "test.in"),
@@ -144,65 +222,42 @@ public class View {
                 )
         );
 
-        String logFilePath = new View().getLogFilePath();
-
         PrgState prg1 = new PrgState();
         prg1.getExecStack().push(ex1);
-        IRepository repo1 = new Repository(prg1, logFilePath);
-        Controller ctrl1 = new Controller(repo1, false);
+        prgList.add(prg1);
 
         PrgState prg2 = new PrgState();
         prg2.getExecStack().push(ex2);
-        IRepository repo2 = new Repository(prg2, logFilePath);
-        Controller ctrl2 = new Controller(repo2, false);
+        prgList.add(prg2);
 
         PrgState prg3 = new PrgState();
         prg3.getExecStack().push(ex3);
-        IRepository repo3 = new Repository(prg3, logFilePath);
-        Controller ctrl3 = new Controller(repo3, false);
+        prgList.add(prg3);
 
         PrgState prg4 = new PrgState();
         prg4.getExecStack().push(ex4);
-        IRepository repo4 = new Repository(prg4, logFilePath);
-        Controller ctrl4 = new Controller(repo4, false);
+        prgList.add(prg4);
 
         PrgState prg5 = new PrgState();
         prg5.getExecStack().push(ex5);
-        IRepository repo5 = new Repository(prg5, logFilePath);
-        Controller ctrl5 = new Controller(repo5, false);
+        prgList.add(prg5);
 
         PrgState prg6 = new PrgState();
         prg6.getExecStack().push(ex6);
-        IRepository repo6 = new Repository(prg6, logFilePath);
-        Controller ctrl6 = new Controller(repo6, false);
+        prgList.add(prg6);
 
         PrgState prg7 = new PrgState();
         prg7.getExecStack().push(ex7);
-        IRepository repo7 = new Repository(prg7, logFilePath);
-        Controller ctrl7 = new Controller(repo7, false);
+        prgList.add(prg7);
 
         PrgState prg8 = new PrgState();
         prg8.getExecStack().push(ex8);
-        IRepository repo8 = new Repository(prg8, logFilePath);
-        Controller ctrl8 = new Controller(repo8, false);
+        prgList.add(prg8);
 
         PrgState prg9 = new PrgState();
         prg9.getExecStack().push(ex9);
-        IRepository repo9 = new Repository(prg9, logFilePath);
-        Controller ctrl9 = new Controller(repo9, false);
+        prgList.add(prg9);
 
-        TextMenu menu = new TextMenu();
-        menu.addCommand(new ExitCommand("0", "exit"));
-        menu.addCommand(new RunExample("1",ex1.toString(), ctrl1));
-        menu.addCommand(new RunExample("2",ex2.toString(), ctrl2));
-        menu.addCommand(new RunExample("3",ex3.toString(), ctrl3));
-        menu.addCommand(new RunExample("4",ex4.toString(), ctrl4));
-        menu.addCommand(new RunExample("5",ex5.toString(), ctrl5));
-        menu.addCommand(new RunExample("6",ex6.toString(), ctrl6));
-        menu.addCommand(new RunExample("7",ex7.toString(), ctrl7));
-        menu.addCommand(new RunExample("8",ex8.toString(), ctrl8));
-        menu.addCommand(new RunExample("9",ex9.toString(), ctrl9));
-
-        menu.show();
+        return prgList;
     }
 }

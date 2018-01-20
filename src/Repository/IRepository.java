@@ -10,4 +10,5 @@ public interface IRepository {
     void setPrgList(List<PrgState> newPrgList);
     void logPrgStateExec(PrgState prgState) throws IOException;
     void openLogFile() throws IOException;
+    PrgState getById(int id);
 }

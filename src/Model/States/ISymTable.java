@@ -11,6 +11,7 @@ public interface ISymTable<String, Integer> {
     boolean isValue(Integer value);
     boolean isEmpty();
     Map<String, Integer> getContent();
+    Iterable<Map.Entry<String, Integer>> getAll();
     void setContent(Map<String, Integer> newSymTable);
     java.lang.String toString();
 }

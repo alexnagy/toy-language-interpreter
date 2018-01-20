@@ -11,7 +11,7 @@ public class SymTable<String, Integer> implements ISymTable<String, Integer> {
         this.dict = new HashMap<>();
     }
     public SymTable(Map _dict) {
-        this.dict = new HashMap<>(_dict);
+        this.dict = new HashMap<String, Integer>(_dict);
     }
 
     @Override
@@ -52,6 +52,11 @@ public class SymTable<String, Integer> implements ISymTable<String, Integer> {
     @Override
     public Map<String, Integer> getContent() {
         return this.dict;
+    }
+
+    @Override
+    public Iterable<Map.Entry<String, Integer>> getAll() {
+        return this.dict.entrySet();
     }
 
     @Override

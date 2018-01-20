@@ -56,6 +56,11 @@ public class Heap<A, V> implements IHeap<A, V> {
     }
 
     @Override
+    public Iterable<Map.Entry<A, V>> getAll() {
+        return this.dict.entrySet();
+    }
+
+    @Override
     public void setContent(Map<A, V> newHeap) {
         this.dict = newHeap;
     }

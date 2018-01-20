@@ -48,7 +48,17 @@ public class Repository implements IRepository {
     }
 
     public void openLogFile() throws IOException {
-        File file = new File(System.getProperty("user.dir").toString(), logFilePath);
+        File file = new File(System.getProperty("user.dir"), logFilePath);
         Desktop.getDesktop().open(file);
+    }
+
+    @Override
+    public PrgState getById(int id) {
+        for(PrgState state : this.prgList)
+        {
+            if (state.getId() == id)
+                return state;
+        }
+        return null;
     }
 }

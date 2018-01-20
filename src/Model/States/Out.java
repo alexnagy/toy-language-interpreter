@@ -36,6 +36,11 @@ public class Out<T> implements IOut<T> {
     }
 
     @Override
+    public List<T> getContent() {
+        return this.list;
+    }
+
+    @Override
     public String toString() {
         StringBuilder comp = new StringBuilder();
         for(T el: this.list) {
