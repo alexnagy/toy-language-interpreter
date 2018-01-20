@@ -1,4 +1,4 @@
-package Model.State;
+package Model.States;
 
 import Model.FileData;
 import java.util.HashMap;

@@ -3,11 +3,10 @@ package Model.Statements;
 import Model.Exceptions.AddressNotDefinedException;
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.UnknownOperationException;
-import Model.Exceptions.VariableNotDefinedException;
 import Model.Expressions.IExpr;
-import Model.State.IHeap;
-import Model.State.ISymTable;
-import Model.State.PrgState;
+import Model.States.IHeap;
+import Model.States.ISymTable;
+import Model.States.PrgState;
 
 import java.io.IOException;
 

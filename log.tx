@@ -1,0 +1,431 @@
+ID: 1
+ExecStack:
+(v=10;(new(v, 20);(new(a, 22);(wH(a, 30);(Print(a);(Print(rH(a));a=0))))))
+
+SymTable:
+
+FileTable:
+
+Out:
+
+Heap:
+
+
+ID: 1
+ExecStack:
+(new(v, 20);(new(a, 22);(wH(a, 30);(Print(a);(Print(rH(a));a=0)))))
+v=10
+
+SymTable:
+
+FileTable:
+
+Out:
+
+Heap:
+
+
+ID: 1
+ExecStack:
+(new(v, 20);(new(a, 22);(wH(a, 30);(Print(a);(Print(rH(a));a=0)))))
+v=10
+
+SymTable:
+
+FileTable:
+
+Out:
+
+Heap:
+
+
+ID: 1
+ExecStack:
+(new(v, 20);(new(a, 22);(wH(a, 30);(Print(a);(Print(rH(a));a=0)))))
+
+SymTable:
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+
+
+ID: 1
+ExecStack:
+(new(v, 20);(new(a, 22);(wH(a, 30);(Print(a);(Print(rH(a));a=0)))))
+
+SymTable:
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+
+
+ID: 1
+ExecStack:
+(new(a, 22);(wH(a, 30);(Print(a);(Print(rH(a));a=0))))
+new(v, 20)
+
+SymTable:
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+
+
+ID: 1
+ExecStack:
+(new(a, 22);(wH(a, 30);(Print(a);(Print(rH(a));a=0))))
+new(v, 20)
+
+SymTable:
+v->10
+
+FileTable:
+
+Out:
+
+Heap:
+
+
+ID: 1
+ExecStack:
+(new(a, 22);(wH(a, 30);(Print(a);(Print(rH(a));a=0))))
+
+SymTable:
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+
+
+ID: 1
+ExecStack:
+(new(a, 22);(wH(a, 30);(Print(a);(Print(rH(a));a=0))))
+
+SymTable:
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+
+
+ID: 1
+ExecStack:
+(wH(a, 30);(Print(a);(Print(rH(a));a=0)))
+new(a, 22)
+
+SymTable:
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+
+
+ID: 1
+ExecStack:
+(wH(a, 30);(Print(a);(Print(rH(a));a=0)))
+new(a, 22)
+
+SymTable:
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+
+
+ID: 1
+ExecStack:
+(wH(a, 30);(Print(a);(Print(rH(a));a=0)))
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+2->22
+
+
+ID: 1
+ExecStack:
+(wH(a, 30);(Print(a);(Print(rH(a));a=0)))
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+2->22
+
+
+ID: 1
+ExecStack:
+(Print(a);(Print(rH(a));a=0))
+wH(a, 30)
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+2->22
+
+
+ID: 1
+ExecStack:
+(Print(a);(Print(rH(a));a=0))
+wH(a, 30)
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+2->22
+
+
+ID: 1
+ExecStack:
+(Print(a);(Print(rH(a));a=0))
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+2->30
+
+
+ID: 1
+ExecStack:
+(Print(a);(Print(rH(a));a=0))
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+2->30
+
+
+ID: 1
+ExecStack:
+(Print(rH(a));a=0)
+Print(a)
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+2->30
+
+
+ID: 1
+ExecStack:
+(Print(rH(a));a=0)
+Print(a)
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+
+Heap:
+1->20
+2->30
+
+
+ID: 1
+ExecStack:
+(Print(rH(a));a=0)
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+2
+
+Heap:
+1->20
+2->30
+
+
+ID: 1
+ExecStack:
+(Print(rH(a));a=0)
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+2
+
+Heap:
+1->20
+2->30
+
+
+ID: 1
+ExecStack:
+a=0
+Print(rH(a))
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+2
+
+Heap:
+1->20
+2->30
+
+
+ID: 1
+ExecStack:
+a=0
+Print(rH(a))
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+2
+
+Heap:
+1->20
+2->30
+
+
+ID: 1
+ExecStack:
+a=0
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+2
+30
+
+Heap:
+1->20
+2->30
+
+
+ID: 1
+ExecStack:
+a=0
+
+SymTable:
+a->2
+v->1
+
+FileTable:
+
+Out:
+2
+30
+
+Heap:
+1->20
+2->30
+
+
+ID: 1
+ExecStack:
+
+SymTable:
+a->0
+v->1
+
+FileTable:
+
+Out:
+2
+30
+
+Heap:
+1->20
+2->30
+
+

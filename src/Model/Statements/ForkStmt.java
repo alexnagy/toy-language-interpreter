@@ -2,7 +2,7 @@ package Model.Statements;
 
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.UnknownOperationException;
-import Model.State.*;
+import Model.States.*;
 
 import java.io.IOException;
 

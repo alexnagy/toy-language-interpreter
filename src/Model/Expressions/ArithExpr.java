@@ -2,8 +2,8 @@ package Model.Expressions;
 
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.UnknownOperationException;
-import Model.State.IHeap;
-import Model.State.ISymTable;
+import Model.States.IHeap;
+import Model.States.ISymTable;
 
 public class ArithExpr implements IExpr {
     private char op;

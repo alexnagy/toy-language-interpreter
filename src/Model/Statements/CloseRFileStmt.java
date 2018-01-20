@@ -3,8 +3,8 @@ package Model.Statements;
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.UnknownOperationException;
 import Model.Expressions.IExpr;
-import Model.State.IFileTable;
-import Model.State.PrgState;
+import Model.States.IFileTable;
+import Model.States.PrgState;
 
 import java.io.BufferedReader;
 import java.io.IOException;

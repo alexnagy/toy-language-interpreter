@@ -1,4 +1,4 @@
-package Model.State;
+package Model.States;
 
 import java.util.HashMap;
 import java.util.Map;

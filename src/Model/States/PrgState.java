@@ -1,4 +1,4 @@
-package Model.State;
+package Model.States;
 
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.EmptyExecStackException;
@@ -6,9 +6,7 @@ import Model.Exceptions.FileNotDefinedException;
 import Model.Exceptions.UnknownOperationException;
 import Model.FileData;
 import Model.Statements.IStmt;
-import javafx.util.Pair;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 
 public class PrgState {

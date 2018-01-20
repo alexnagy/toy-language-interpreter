@@ -21,6 +21,6 @@ public class FileData {
 
     @Override
     public String toString() {
-        return "(" + fileName + ", " + fileDescriptor.toString() + ")";
+        return "(" + fileName + ", " + fileDescriptor.toString().split("@")[1] + ")";
     }
 }

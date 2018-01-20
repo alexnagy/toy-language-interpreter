@@ -1,4 +1,4 @@
-package Model.State;
+package Model.States;
 
 public interface IOut<T> {
     T getLast();

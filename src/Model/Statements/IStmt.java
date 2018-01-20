@@ -2,7 +2,7 @@ package Model.Statements;
 
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.UnknownOperationException;
-import Model.State.PrgState;
+import Model.States.PrgState;
 import java.io.IOException;
 
 public interface IStmt {

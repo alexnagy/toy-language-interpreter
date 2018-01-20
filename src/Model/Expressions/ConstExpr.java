@@ -1,7 +1,7 @@
 package Model.Expressions;
 
-import Model.State.IHeap;
-import Model.State.ISymTable;
+import Model.States.IHeap;
+import Model.States.ISymTable;
 
 public class ConstExpr implements IExpr {
     private int number;

@@ -1,9 +1,7 @@
 package Model.Statements;
 
-import Model.State.IExecStack;
-import Model.State.PrgState;
-
-import java.util.Scanner;
+import Model.States.IExecStack;
+import Model.States.PrgState;
 
 public class CompStmt implements IStmt {
     private IStmt first, second;

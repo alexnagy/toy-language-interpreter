@@ -3,9 +3,9 @@ package Model.Statements;
 import Model.Exceptions.DivisionByZeroException;
 import Model.Exceptions.UnknownOperationException;
 import Model.Expressions.IExpr;
-import Model.State.IExecStack;
-import Model.State.ISymTable;
-import Model.State.PrgState;
+import Model.States.IExecStack;
+import Model.States.ISymTable;
+import Model.States.PrgState;
 
 public class AssignStmt implements IStmt {
     private String id;

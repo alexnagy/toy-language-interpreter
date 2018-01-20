@@ -1,9 +1,8 @@
 package Repository;
 
-import Model.State.PrgState;
+import Model.States.PrgState;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface IRepository {

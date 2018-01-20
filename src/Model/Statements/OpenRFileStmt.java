@@ -1,10 +1,9 @@
 package Model.Statements;
 
 import Model.FileData;
-import Model.State.IExecStack;
-import Model.State.IFileTable;
-import Model.State.ISymTable;
-import Model.State.PrgState;
+import Model.States.IFileTable;
+import Model.States.ISymTable;
+import Model.States.PrgState;
 
 
 import javax.management.openmbean.KeyAlreadyExistsException;

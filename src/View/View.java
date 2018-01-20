@@ -4,13 +4,10 @@ import Controller.Controller;
 import Model.ExitCommand;
 import Model.Expressions.*;
 import Model.RunExample;
-import Model.State.*;
+import Model.States.*;
 import Model.Statements.*;
 import Repository.IRepository;
 import Repository.Repository;
-import javafx.util.Pair;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class View {
@@ -207,8 +204,5 @@ public class View {
         menu.addCommand(new RunExample("9",ex9.toString(), ctrl9));
 
         menu.show();
-
-
-
     }
 }
